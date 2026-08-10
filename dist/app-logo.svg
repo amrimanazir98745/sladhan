@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <defs>
+    <linearGradient id="logoBgGrad" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#222026" />
+      <stop offset="100%" stop-color="#121115" />
+    </linearGradient>
+    <linearGradient id="champagneGoldGrad" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF2D6" />
+      <stop offset="50%" stop-color="#EDE3D0" />
+      <stop offset="100%" stop-color="#C9B896" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rich Onyx Squircle Background with subtle Gold Border -->
+  <rect width="512" height="512" rx="108" fill="url(#logoBgGrad)" />
+  <rect x="6" y="6" width="500" height="500" rx="102" stroke="#C9B896" stroke-width="8" stroke-opacity="0.4" />
+
+  <!-- Custom Mosque Silhouette Logo Path scaled and centered inside 512x512 box -->
+  <g transform="translate(112, 78) scale(0.72)">
+    <path
+      fill="url(#champagneGoldGrad)"
+      d="M200.69,205.52c-13.21,17.48-22.04,34.79-27.89,52.31-8,24.06-10.73,49.27-11.44,76.27-.42,16.01-.2,32.7.02,50.03v.07l.25,23.39.1.17v102.59h78.21v-98.98l.1-.17.27-27v-.07c.2-16.79.42-32.94,0-48.43v-.07c-.69-26.95-3.39-52.22-11.49-76.69-5.89-17.85-14.78-35.5-28.13-53.42h0ZM200.84,50.25C38.45,165.56,39.72,274.97,41.88,458.5l.52,51.87h77.75v-102.59h.1l-.25-23.15v-.07c-.25-17.8-.47-34.93-.02-51.43.83-30.69,4.03-59.68,13.55-88.3,9.7-29.09,25.78-57.37,52.14-85.72l15.34-16.5,15.17,16.64c26.46,29.07,42.52,57.52,52.12,86.68,9.45,28.55,12.59,57.69,13.4,88.65.44,15.98.22,32.65,0,49.98v.07l-.27,26.76h.1v98.98h77.77l.49-51.85c2.16-183.55,3.44-292.96-158.95-408.27h0ZM.49,458.99C-1.89,257.12-3.29,138.72,189.22,7.88l11.61-7.88,11.61,7.88c192.51,130.84,191.11,249.24,188.73,451.13-.22,17.87-.44,36.45-.52,55.46h.1v37.49H.4v-60.51h.47l-.37-32.45H.49Z"
+    />
+  </g>
+</svg>

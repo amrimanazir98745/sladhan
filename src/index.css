@@ -1,0 +1,672 @@
+@import "tailwindcss";
+
+/* Enable .dark class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===== Premium Peacock-Blue Light Design System ===== */
+:root {
+  /* Core Palette */
+  --white:              #FFFFFF;
+  --bg-soft:            #F7FBFC;
+  --bg-teal-xlight:     #E8F7F8;
+  --bg-teal-light:      #CDEFF1;
+  --peacock:            #0E7490;
+  --peacock-deep:       #0F6074;
+  --peacock-hover:      #0A5F78;
+  --cyan-highlight:     #67D5DF;
+  --text-main:          #17252B;
+  --text-secondary:     #60757C;
+  --text-muted:         #8CA5AD;
+
+  /* Legacy color bindings (keep components working) */
+  --bg-base:            #E8F7F8;
+  --bg-card:            #FFFFFF;
+  --teal-primary:       #0E7490;
+  --teal-hover:         #0F6074;
+  --teal-light:         #E8F7F8;
+  --teal-border:        #CDEFF1;
+  --champagne-light:    #0E7490;
+  --champagne:          #0E7490;
+  --champagne-deep:     #0F6074;
+  --text-primary:       #17252B;
+  --gold-light:         #0E7490;
+  --gold:               #0E7490;
+  --gold-deep:          #0F6074;
+  --sapphire:           #0E7490;
+  --sapphire-light:     #67D5DF;
+  --silver:             #60757C;
+
+  /* Safe-area insets for notched devices */
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ===== Font Utilities ===== */
+@layer utilities {
+  .font-arabic  { font-family: 'Amiri', serif; }
+  .font-tamil,
+  .font-anek    { font-family: 'Anek Tamil', sans-serif; }
+  .font-sinhala { font-family: 'Gemunu Libre', sans-serif; }
+  .font-outfit  { font-family: 'Anek Tamil', 'Outfit', sans-serif; }
+  .font-cinzel  { font-family: 'Cinzel', serif; }
+  .font-jakarta { font-family: 'Anek Tamil', 'Plus Jakarta Sans', sans-serif; }
+
+  /* Text utilities */
+  .text-gradient-gold,
+  .text-highlight {
+    color: #0E7490;
+    font-weight: 700;
+  }
+
+  .text-hero-countdown {
+    color: #0E7490;
+    text-shadow: none;
+  }
+
+  .text-hero {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #17252B;
+  }
+
+  .text-secondary  { color: var(--text-secondary); }
+
+  .text-primary-strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* Legacy colour overrides */
+  .text-\[\#5B8DEF\],
+  .text-\[\#D4AF6A\],
+  .text-\[\#F2D9A8\] { color: #0E7490; }
+
+  /* Safe-area helpers */
+  .pb-safe { padding-bottom: calc(0.75rem + var(--safe-bottom)); }
+  .pt-safe { padding-top: var(--safe-top); }
+}
+
+/* ===== Global Reset ===== */
+* {
+  font-family: 'Anek Tamil', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* ===== Focus States ===== */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid #0E7490;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:     0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:    0.01ms !important;
+    scroll-behavior:        auto !important;
+  }
+}
+
+/* ===== App Background â€” White + Very-Light Peacock, fixed gradient ===== */
+body,
+.app-bg,
+.bg-premium-dark {
+  min-height: 100vh;
+  color: #17252B;
+  background-color: #F7FBFC;
+  background-image:
+    radial-gradient(ellipse 70% 60% at 20% 0%,  rgba(103, 213, 223, 0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(14, 116, 144, 0.07)  0%, transparent 60%),
+    linear-gradient(180deg, #FFFFFF 0%, #F0FAFB 30%, #F7FBFC 70%, #FFFFFF 100%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* ===== Premium Background — Custom Islamic Pattern ===== */
+body::before,
+.app-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('/bg-pattern.svg');
+  background-size: 300px 300px;
+  background-repeat: repeat;
+  opacity: 0.04; /* 4% */
+}
+
+.your-main-content-wrapper,
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Premium Glass Card / Panel ===== */
+.glass-card,
+.glass-panel {
+  position: relative;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.95) inset,
+    0 0 0 1px rgba(14, 116, 144, 0.07),
+    0 8px 32px -8px rgba(14, 116, 144, 0.12),
+    0 2px 8px -2px rgba(14, 116, 144, 0.06);
+}
+
+/* Subtle top-edge highlight line */
+.glass-card::before,
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.60) 0%,
+    transparent 40%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass-card > *,
+.glass-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Premium Chips & Pills ===== */
+.glass-chip,
+.glass-pill {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(14, 116, 144, 0.18);
+  border-radius: 14px;
+  color: #17252B;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.glass-chip:hover,
+.glass-pill:hover {
+  background: rgba(232, 247, 248, 0.90);
+  border-color: rgba(14, 116, 144, 0.30);
+  box-shadow: 0 2px 8px -2px rgba(14, 116, 144, 0.12);
+}
+
+.glass-chip:active,
+.glass-pill:active { transform: scale(0.97); }
+
+/* ===== Premium Glass Nav ===== */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.95) inset,
+    0 8px 28px -6px rgba(14, 116, 144, 0.14),
+    0 2px 6px -2px rgba(14, 116, 144, 0.07);
+}
+
+/* ===== Primary Accent Buttons â€” Peacock Blue gradient ===== */
+.glass-btn-champagne,
+.glass-btn-accent,
+.glass-btn-gold,
+.glass-gold {
+  background: linear-gradient(145deg, #138BA6 0%, #0E7490 50%, #0F6074 100%);
+  border: 1px solid rgba(15, 96, 116, 0.40);
+  border-radius: 14px;
+  color: #FFFFFF;
+  padding: 0.65rem 1.3rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.22) inset,
+    0 6px 18px -4px rgba(14, 116, 144, 0.38),
+    0 2px 5px -1px rgba(14, 116, 144, 0.18);
+}
+
+.glass-btn-champagne:hover,
+.glass-btn-accent:hover,
+.glass-btn-gold:hover,
+.glass-gold:hover {
+  filter: brightness(1.07);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.28) inset,
+    0 8px 22px -4px rgba(14, 116, 144, 0.44),
+    0 2px 7px -1px rgba(14, 116, 144, 0.22);
+  transform: translateY(-1px);
+}
+
+.glass-btn-champagne:active,
+.glass-btn-accent:active,
+.glass-btn-gold:active,
+.glass-gold:active {
+  filter: brightness(0.96);
+  transform: scale(0.97) translateY(0);
+}
+
+/* Fallback â€” no backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-card,  .glass-panel  { background: #FFFFFF; }
+  .glass-chip,  .glass-pill   { background: #FFFFFF; }
+  .glass-nav                  { background: rgba(255,255,255,0.97); }
+  .glass-btn-champagne,
+  .glass-btn-accent,
+  .glass-btn-gold,
+  .glass-gold                 { background: #0E7490; }
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(14, 116, 144, 0.18);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 116, 144, 0.35);
+}
+
+/* ===== Edge-fade scroll hint ===== */
+.scroll-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 28px), transparent 100%);
+  mask-image:         linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 28px), transparent 100%);
+}
+
+/* ===== Animations ===== */
+@keyframes compassPulse {
+  0%   { transform: scale(1);    opacity: 0.9; }
+  50%  { transform: scale(1.05); opacity: 0.5; }
+  100% { transform: scale(1);    opacity: 0.9; }
+}
+.animate-compass-pulse { animation: compassPulse 3s infinite ease-in-out; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+
+/* Red pulse for "NEXT" indicators */
+@keyframes smoothRedBlink {
+  0%, 100% { opacity: 1; transform: scale(1);    box-shadow: 0 0 7px rgba(239, 68, 68, 0.75); }
+  50%       { opacity: 0.35; transform: scale(0.88); box-shadow: 0 0 2px rgba(239, 68, 68, 0.3); }
+}
+@keyframes smoothRedHalo {
+  0%   { transform: scale(1);   opacity: 0.70; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.animate-smooth-red-blink { animation: smoothRedBlink 1.4s infinite ease-in-out; }
+.animate-smooth-red-halo  { animation: smoothRedHalo  1.8s infinite cubic-bezier(0, 0, 0.2, 1); }
+
+/* ===== Mobile Touch Targets (only for interactive top-level controls) ===== */
+@media (max-width: 640px) {
+  button:not(.no-min-h),
+  a[role="button"]:not(.no-min-h) {
+    min-height: 2.25rem;
+  }
+}
+
+/* ===== Targeted overflow protection ===== */
+html, body { overflow-x: hidden; }
+img { max-width: 100%; height: auto; }
+
+/* ===== Progress bar moving dot animation ===== */
+@keyframes progressDotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(14,116,144,0.40); }
+  50%       { box-shadow: 0 0 0 3px rgba(14,116,144,0.12); }
+}
+.progress-dot {
+  animation: progressDotPulse 2s infinite ease-in-out;
+}
+
+/* ===== Premium Toggle Switch ===== */
+.toggle-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 44px;
+  height: 24px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  flex-shrink: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+.toggle-switch.on  { background: linear-gradient(135deg, #138BA6, #0E7490); }
+.toggle-switch.off { background: #CDEFF1; }
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.toggle-switch.on::after  { transform: translateX(20px); }
+.toggle-switch.off::after { transform: translateX(0px); }
+
+/* ===== District Dropdown â€” Fixed-Position Portal ===== */
+.district-dropdown-portal {
+  position: fixed;
+  z-index: 9999;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #CDEFF1;
+  box-shadow: 0 16px 48px -8px rgba(14,116,144,0.22);
+  width: min(92vw, 380px);
+  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeIn 0.18s ease-out;
+}
+.district-dropdown-portal .district-list {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+.district-dropdown-portal .district-list ul {
+  padding: 2px 0;
+  margin: 0;
+  list-style: none;
+}
+.district-dropdown-portal .district-list li button {
+  width: 100%;
+  text-align: left;
+  padding: 9px 14px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background 0.12s;
+  min-height: 0;
+}
+.district-dropdown-portal .district-list li button:hover { background: #F7FBFC; }
+.district-dropdown-portal .district-list li button.selected { background: #E8F7F8; color: #0E7490; }
+.district-dropdown-portal .district-list li + li { border-top: 1px solid #F0FAFB; }
+
+/* ===== @media print â€” Clean A4 Prayer Timetable ===== */
+@media print {
+  /* Hide everything by default */
+  body > * { display: none !important; }
+
+  /* Show only the print container */
+  .print-area { display: block !important; }
+
+  /* Reset page */
+  @page {
+    size: A4 portrait;
+    margin: 14mm 12mm 14mm 12mm;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt !important;
+    overflow: visible !important;
+  }
+
+  /* Hide all nav, header, footer, buttons, modals, bottom nav */
+  header, footer, nav,
+  .glass-nav,
+  button:not(.print-visible),
+  .no-print,
+  [class*="fixed"],
+  [class*="sticky"] {
+    display: none !important;
+  }
+
+  /* Print area styles */
+  .print-area {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Print title */
+  .print-title {
+    text-align: center;
+    font-size: 16pt;
+    font-weight: 900;
+    color: #0E7490;
+    margin-bottom: 6pt;
+    display: block !important;
+  }
+  .print-subtitle {
+    text-align: center;
+    font-size: 9pt;
+    color: #555;
+    margin-bottom: 12pt;
+    display: block !important;
+  }
+
+  /* Table */
+  .print-area table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: avoid;
+    font-size: 9pt !important;
+  }
+  .print-area table thead tr {
+    background: #E8F7F8 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .print-area table th {
+    padding: 5pt 4pt !important;
+    font-weight: 800;
+    font-size: 8pt;
+    color: #0E7490;
+    border-bottom: 1.5pt solid #0E7490;
+    text-align: left;
+  }
+  .print-area table td {
+    padding: 4pt 4pt !important;
+    border-bottom: 0.5pt solid #E0F0F2;
+    vertical-align: middle;
+    font-size: 8.5pt;
+    white-space: nowrap;
+  }
+  .print-area table tr.today-row {
+    background: #E8F7F8 !important;
+    font-weight: 700 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .print-area table tr:nth-child(even) {
+    background: #FAFEFE !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Remove glass effects */
+  .glass-card, .glass-panel, .glass-nav, .glass-chip, .glass-pill {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+
+  /* Avoid page breaks inside rows */
+  tr { page-break-inside: avoid; }
+}
+
+
+/* ---------------------------------------------------
+   DARK THEME  —  .dark class on <html>
+   Deep ocean-navy + peacock-cyan highlight palette
+   --------------------------------------------------- */
+
+/* Page background */
+.dark body,
+.dark .app-bg {
+  color: #E8F7F8 !important;
+  background-color: #081418 !important;
+  background-image:
+    radial-gradient(ellipse 70% 60% at 20% 0%,  rgba(14,116,144,0.25) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(103,213,223,0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #0A1A22 0%, #081418 50%, #060F14 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* Custom Islamic Pattern in Dark Mode */
+.dark body::before,
+.dark .app-bg::before {
+  background-image: url('/bg-pattern.svg') !important;
+  background-size: 300px 300px !important;
+  background-repeat: repeat !important;
+  opacity: 0.04 !important; /* 4% */
+  filter: invert(1) !important;
+}
+
+/* Glass nav */
+.dark .glass-nav {
+  background: rgba(6,15,22,0.90) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border-bottom-color: rgba(14,116,144,0.20) !important;
+  box-shadow: 0 1px 0 rgba(103,213,223,0.05), 0 4px 24px -4px rgba(0,0,0,0.50) !important;
+}
+
+/* Glass cards */
+.dark .glass-card,
+.dark .glass-panel {
+  background: rgba(10,24,36,0.82) !important;
+  backdrop-filter: blur(20px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+  border-color: rgba(14,116,144,0.22) !important;
+  box-shadow: 0 1px 0 0 rgba(103,213,223,0.07) inset, 0 0 0 1px rgba(14,116,144,0.10), 0 8px 32px -8px rgba(0,0,0,0.55) !important;
+}
+.dark .glass-card::before,
+.dark .glass-panel::before {
+  background: linear-gradient(to bottom, rgba(103,213,223,0.05) 0%, transparent 40%) !important;
+}
+
+/* Glass chips / pills */
+.dark .glass-chip,
+.dark .glass-pill {
+  background: rgba(14,116,144,0.15) !important;
+  border-color: rgba(14,116,144,0.28) !important;
+  color: #67D5DF !important;
+}
+
+/* White backgrounds */
+.dark .bg-white,
+.dark [class*="bg-white\/"] {
+  background-color: rgba(10,24,36,0.88) !important;
+}
+
+/* Light teal backgrounds */
+.dark [class*="bg-[#F7FBFC]"] { background-color: rgba(10,24,36,0.80) !important; }
+.dark [class*="bg-[#E8F7F8]"] { background-color: rgba(14,116,144,0.12) !important; }
+
+/* Text */
+.dark [class*="text-[#17252B]"] { color: #E8F7F8 !important; }
+.dark [class*="text-[#60757C]"] { color: #8ECFD8 !important; }
+.dark [class*="text-[#8CA5AD]"] { color: #5A8D9A !important; }
+.dark [class*="text-[#0E7490]"] { color: #67D5DF !important; }
+
+/* Borders */
+.dark [class*="border-[#E8F7F8]"] { border-color: rgba(14,116,144,0.18) !important; }
+.dark [class*="border-[#CDEFF1]"] { border-color: rgba(14,116,144,0.22) !important; }
+
+/* Inputs */
+.dark input {
+  background: rgba(14,116,144,0.10) !important;
+  border-color: rgba(14,116,144,0.28) !important;
+  color: #E8F7F8 !important;
+}
+.dark input::placeholder { color: #4A7A86 !important; }
+
+/* Toggle OFF */
+.dark .toggle-switch.off { background: rgba(14,116,144,0.22) !important; }
+
+/* District dropdown portal */
+.dark .district-dropdown-portal {
+  background: #0D2130 !important;
+  border-color: rgba(14,116,144,0.28) !important;
+  box-shadow: 0 16px 48px -8px rgba(0,0,0,0.65) !important;
+}
+.dark .district-dropdown-portal li + li { border-top-color: rgba(14,116,144,0.10) !important; }
+.dark .district-dropdown-portal button:hover { background: rgba(14,116,144,0.14) !important; }
+.dark .district-dropdown-portal button.selected { background: rgba(14,116,144,0.22) !important; color: #67D5DF !important; }
+
+/* Modal */
+.dark [class*="bg-white/96"] { background: rgba(8,18,28,0.96) !important; }
+.dark [class*="bg-white/95"] { background: rgba(8,18,28,0.95) !important; }
+
+/* Scrollbar */
+.dark ::-webkit-scrollbar { width: 5px; height: 5px; }
+.dark ::-webkit-scrollbar-track { background: rgba(14,116,144,0.05); }
+.dark ::-webkit-scrollbar-thumb { background: rgba(14,116,144,0.30); border-radius: 99px; }
+.dark ::-webkit-scrollbar-thumb:hover { background: rgba(14,116,144,0.50); }
+
+/* Smooth theme switch */
+html { transition: background-color 0.3s ease, color 0.3s ease; }
+
+
+/* ── District portal dark overrides (covers inline-style elements) ── */
+.dark .district-dropdown-portal,
+.dark .district-dropdown-portal div,
+.dark .district-dropdown-portal ul,
+.dark .district-dropdown-portal li,
+.dark .district-dropdown-portal button { background-color: transparent; }
+.dark .district-dropdown-portal { background: #0C1E2E !important; border-color: rgba(14,116,144,0.30) !important; box-shadow: 0 20px 60px rgba(0,0,0,0.70) !important; }
+.dark .district-dropdown-portal span { color: #E8F7F8 !important; }
+.dark .district-dropdown-portal > div:first-child { border-bottom-color: rgba(14,116,144,0.15) !important; background: #0C1E2E !important; }
+.dark .district-dropdown-portal button { color: #E8F7F8 !important; border-bottom-color: rgba(14,116,144,0.10) !important; }
+.dark .district-dropdown-portal button:hover { background: rgba(14,116,144,0.14) !important; }
+.dark .district-dropdown-portal input { background: rgba(14,116,144,0.12) !important; border-color: rgba(14,116,144,0.28) !important; color: #E8F7F8 !important; }
+.dark .district-dropdown-portal input::placeholder { color: #4A7A86 !important; }
+
+/* ── Prayer card inner elements dark ── */
+.dark .glass-card .bg-white\/90,
+.dark .glass-card [class*="bg-white"] { background-color: rgba(14,116,144,0.14) !important; }
+.dark .glass-card .border-\[\#E8F7F8\] { border-color: rgba(14,116,144,0.20) !important; }
+
+/* ── Countdown banner inner dark ── */
+.dark [class*="from-[#E8F7F8]"][class*="to-[#F0FAFB]"],
+.dark .bg-gradient-to-b.from-\[\#E8F7F8\].to-\[\#F0FAFB\] { background: rgba(10,24,36,0.75) !important; border-color: rgba(14,116,144,0.22) !important; }
+.dark .bg-white\/90.px-2\.5 { background: rgba(14,116,144,0.18) !important; }
+
+/* ── Bottom nav dark ── */
+.dark nav { background: rgba(6,14,22,0.95) !important; border-top-color: rgba(14,116,144,0.18) !important; }
