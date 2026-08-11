@@ -321,7 +321,7 @@ export const HeroTimer: React.FC<HeroTimerProps> = ({
         <div className="relative z-10 p-3.5 sm:p-5 space-y-3 sm:space-y-4">
 
           {/* ── Top Header ── */}
-          <div className="flex flex-col items-center text-center gap-2 sm:gap-3 border-b border-[#E8F7F8] pb-3 sm:pb-4">
+          <div className="flex flex-col items-center text-center gap-2 sm:gap-3 border-b border-[#E8F7F8] dark:border-[rgba(14,116,144,0.15)] pb-3 sm:pb-4">
 
             {/* Title with praying-man icon */}
             <h2 className="text-sm sm:text-xl font-black tracking-wide text-[#17252B] flex items-center justify-center gap-2 font-['Anek_Tamil',sans-serif] leading-snug">
@@ -451,13 +451,19 @@ export const HeroTimer: React.FC<HeroTimerProps> = ({
           )}
 
           {/* ── Live Countdown Banner ── */}
-          <div className="relative overflow-hidden rounded-[18px] bg-gradient-to-b from-[#E8F7F8] to-[#F0FAFB] border border-[#CDEFF1] p-3.5 sm:p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_4px_16px_-4px_rgba(14,116,144,0.10)]">
+          <div
+            className="relative overflow-hidden rounded-[18px] bg-gradient-to-b from-[#E8F7F8] to-[#F0FAFB] border border-[#CDEFF1] dark:border-[rgba(14,116,144,0.22)] p-3.5 sm:p-5"
+            style={{ boxShadow: darkMode
+              ? 'inset 0 1px 0 rgba(103,213,223,0.06), 0 4px 16px -4px rgba(0,0,0,0.30)'
+              : 'inset 0 1px 0 rgba(255,255,255,0.9), 0 4px 16px -4px rgba(14,116,144,0.10)'
+            }}
+          >
             <div className="flex flex-col items-center gap-3">
 
               {/* Status */}
               <div className="flex flex-col items-center text-center gap-1.5 w-full">
                 <div className="flex items-center gap-2">
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500 animate-smooth-red-blink shrink-0" />
+                  <span className="inline-flex rounded-full h-2 w-2 bg-red-500 animate-smooth-red-blink shrink-0" />
                   <span className="text-[10px] font-black tracking-wider uppercase bg-white/90 px-2.5 py-0.5 rounded-[5px] border border-[#CDEFF1] text-[#0E7490] whitespace-nowrap">
                     LIVE ADHAN STATUS
                   </span>

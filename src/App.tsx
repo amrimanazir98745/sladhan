@@ -109,11 +109,6 @@ export default function App() {
     };
   }, []);
 
-  // Remove any lingering dark class so the light theme shows correctly
-  useEffect(() => {
-    document.documentElement.classList.remove('dark');
-  }, []);
-
   // Restore saved district from localStorage if present
   useEffect(() => {
     try {
@@ -402,7 +397,7 @@ export default function App() {
                 ) : isDua ? (
                   <DuaIcon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#0E7490]'}`} />
                 ) : (
-                  <Icon className="w-4 h-4" />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#0E7490] dark:text-[#67D5DF]'}`} />
                 )}
                 <span className="text-[9px] sm:text-[10px] font-bold mt-0.5 leading-none">{label}</span>
               </button>

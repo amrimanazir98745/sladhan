@@ -86,20 +86,24 @@ export const PrayerGrid: React.FC<PrayerGridProps> = ({
               </p>
             </div>
 
+            {/* ── Divider ── */}
+            <div className={`mt-3 sm:mt-4 border-t ${
+              prayer.isNext
+                ? 'border-[#0E7490]/25 dark:border-[#67D5DF]/20'
+                : 'border-[#E8F7F8] dark:border-[rgba(14,116,144,0.18)]'
+            }`} />
+
             {/* ── Row 3: Time + NEXT badge ── */}
-            <div className="mt-3 sm:mt-4 flex items-center justify-between gap-1.5 flex-wrap">
+            <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-1.5 flex-wrap">
               <span className={`font-mono text-sm sm:text-base font-black tabular-nums leading-none ${
                 prayer.isNext ? 'text-[#0E7490] dark:text-[#67D5DF]' : 'text-[#17252B] dark:text-[#E8F7F8]'
               }`}>
-                {prayer.time12}
+                {prayer.timeFormatted}
               </span>
 
               {prayer.isNext && (
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#0E7490] dark:bg-[#0E7490]/80 text-white text-[9px] font-black uppercase tracking-wide whitespace-nowrap shrink-0">
-                  <span className="relative flex h-1.5 w-1.5 shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-80" />
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500" />
-                  </span>
+                  <span className="inline-flex rounded-full h-1.5 w-1.5 bg-red-500 animate-smooth-red-blink shrink-0" />
                   NEXT
                 </span>
               )}
