@@ -40,8 +40,8 @@ export default defineConfig(() => {
           ],
         },
         manifest: {
-          short_name: 'Prayer Times SL',
-          name: 'Sri Lanka Prayer Times',
+          short_name: 'SL Prayer Times',
+          name: 'SL Prayer Times',
           description: 'Sri Lanka 100% Offline Prayer Times, Hijri Calendar, Tasbih & Duas',
           icons: [
             { src: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180', purpose: 'any' },

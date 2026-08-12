@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bell, Calendar, Clock, Download, Sun, Moon } from 'lucide-react';
 import { TasbihIcon, DuaIcon, WebsiteLogoIcon } from './IslamicIcons';
 
 interface HeaderProps {
   activeTab: 'today' | 'calendar' | 'tasbih' | 'duas';
   setActiveTab: (tab: 'today' | 'calendar' | 'tasbih' | 'duas') => void;
-  hijriDate: string;
+  hijriDate?: string;
   onOpenNotifications: () => void;
   onInstallPwa?: () => void;
   darkMode: boolean;
@@ -15,12 +15,33 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
   setActiveTab,
-  hijriDate,
   onOpenNotifications,
   onInstallPwa,
   darkMode,
   onToggleDarkMode,
 }) => {
+  const [liveTime, setLiveTime] = useState(() => new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setLiveTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formattedDate = liveTime.toLocaleDateString('en-LK', {
+    timeZone: 'Asia/Colombo',
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+  });
+
+  const formattedTime = liveTime.toLocaleTimeString('en-LK', {
+    timeZone: 'Asia/Colombo',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  });
+
   return (
     <header className="sticky top-0 z-40 glass-nav border-b border-[#CDEFF1]/50 dark:border-[#0E7490]/20 transition-all duration-300 font-['Anek_Tamil',sans-serif]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
@@ -37,11 +58,13 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="min-w-0">
               <div className="flex items-center space-x-1.5 sm:space-x-2">
                 <h1 className="text-sm sm:text-lg font-black text-[#17252B] dark:text-[#E8F7F8] tracking-wide font-['Anek_Tamil',sans-serif] truncate">
-                  Srilanka <span className="text-[#0E7490] dark:text-[#67D5DF]">Prayer Times</span>
+                  Sri Lanka <span className="text-[#0E7490] dark:text-[#67D5DF]">Prayer Times</span>
                 </h1>
               </div>
-              <p className="text-[11px] sm:text-xs text-[#60757C] dark:text-[#8ECFD8] font-medium leading-none mt-0.5 truncate">
-                {hijriDate}
+              <p className="text-[11px] sm:text-xs font-medium leading-none mt-0.5 flex items-center gap-1 truncate">
+                <span className="text-[#60757C] dark:text-[#8ECFD8]">{formattedDate}</span>
+                <span className="text-[#CDEFF1] dark:text-[#0E7490]/60">·</span>
+                <span className="font-mono font-bold text-[#0E7490] dark:text-[#67D5DF] tabular-nums">{formattedTime}</span>
               </p>
             </div>
           </div>

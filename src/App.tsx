@@ -437,7 +437,7 @@ export default function App() {
           {/* Main Title & Portal Info */}
           <div className="flex flex-col items-center justify-center space-y-1">
             <h3 className="text-sm sm:text-base font-extrabold text-[#17252B] dark:text-[#E8F7F8] tracking-wide">
-              Srilanka Prayer Times
+              SL Prayer Times
             </h3>
             <p className="text-xs text-[#60757C] dark:text-[#8ECFD8] font-medium">
               Official Sri Lanka Standard Prayer Portal 🇱🇰
@@ -471,7 +471,7 @@ export default function App() {
 
           {/* Copyright & Credit */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-[#8CA5AD] dark:text-[#4A7A86] pt-2 border-t border-[#E8F7F8] dark:border-[rgba(14,116,144,0.18)] w-full">
-            <span className="text-[#8CA5AD] dark:text-[#4A7A86]">© 2026 Srilanka Prayer Times</span>
+            <span className="text-[#8CA5AD] dark:text-[#4A7A86]">© 2026 SL Prayer Times</span>
             <span className="hidden sm:inline text-[#CDEFF1] dark:text-[rgba(14,116,144,0.30)]">•</span>
             <a
               href="https://khalidz.com"
